@@ -1,0 +1,27 @@
+{
+    "presets": [
+      [
+        "@babel/preset-react",
+        {
+          "runtime": "automatic"
+        }
+      ], 
+      "@babel/preset-env"
+    ], 
+    "plugins": ["@babel/plugin-proposal-class-properties"],
+    "env": {
+      "test": {
+        "presets": [
+          [
+            "@babel/preset-env"
+            // {
+            //   // target runs in node
+            //   "target": {
+            //     "node": "current"
+            //   }
+            // }
+          ]
+        ]
+      }
+    }
+  }
