@@ -1,17 +1,18 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import env from 'react-dotenv';
 
 const useAPIRequest = ({ url, method, body = null ?? '' }) => {
   const [data, setData] = useState({});
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-  const fullUrl = process.env.REACT_APP_BUNQ_API_BASE_URL + url;
+  const fullUrl = env.BUNQ_API_BASE_URL + url;
 
   const config = {
     method,
     url: fullUrl,
     headers: {
-      Authorization: `Bearer ${process.env.REACT_APP_BUNQ_API_TOKEN}`,
+      Authorization: `Bearer ${env.BUNQ_API_TOKEN}`,
     },
     body
   };
