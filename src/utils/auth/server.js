@@ -1,12 +1,10 @@
-import fs from 'fs';
-import bodyParser from 'body-parser';
-import jsonServer from 'json-server';
-import jwt from 'jsonwebtoken';
+const bodyParser = require('body-parser');
+const jsonServer = require('json-server');
+const jwt = require('jsonwebtoken');
+const userdb = require('./db.json');
 
 // create express server
 const server = jsonServer.create();
-const router = jsonServer.router('./db.json');
-const userdb = JSON.parse(fs.readFileSync('./users.json', 'UTF-8'));
 
 // set default middleware
 server.use(jsonServer.defaults());
@@ -28,49 +26,43 @@ function verifyToken(token) {
   );
 }
 
-// Check if the user exists in database
-// function isAuthenticated({ email, password }) {
-//   return (
-//     userdb.users.findIndex(
-//       (user) => user.email === email && user.password === password
-//     ) !== -1
-//   );
-// }
+// Check if the password is correct
+// success if password === username
+function isAuthenticated({ username, password }) {
+  return userdb.users.findIndex(user => user.name === username && user.password === password) !== -1
+}
 
-// server.post('/auth/login', (req, res) => {
-//   const { email, password } = req.body;
-//   if (isAuthenticated({ email, password }) === false) {
-//     const status = 401;
-//     const message = 'Incorrect email or password';
-//     res.status(status).json({ status, message });
-//     return;
-//   }
-//   const access_token = createToken({ email, password });
-//   res.status(200).json({ access_token });
-// });
+server.post('/auth/login', (req, res) => {
+  const { username, password } = req.body;
+  if (isAuthenticated({ username, password }) === false) {
+    const status = 401;
+    const message = 'Incorrect password';
+    res.status(status).json({ status, message });
+    return;
+  }
+  const ACCESS_TOKEN = createToken({ username, password });
+  res.status(200).json({ ACCESS_TOKEN });
+});
 
-// server.use(/^(?!\/auth).*$/, (req, res, next) => {
-//   if (
-//     req.headers.authorization === undefined ||
-//     req.headers.authorization.split(' ')[0] !== 'Bearer'
-//   ) {
-//     const status = 401;
-//     const message = 'Bad authorization header';
-//     res.status(status).json({ status, message });
-//     return;
-//   }
-//   try {
-//     verifyToken(req.headers.authorization.split(' ')[1]);
-//     next();
-//   } catch (err) {
-//     const status = 401;
-//     const message = 'Error: access_token is not valid';
-//     res.status(status).json({ status, message });
-//   }
-// });
+// middleware: check auth header(jwt)
+server.use(/^(?!\/auth).*$/, (req, res, next) => {
+  if (
+    req.headers.authorization === undefined ||
+    req.headers.authorization.split(' ')[0] !== 'Bearer'
+  ) {
+    const status = 401;
+    const message = 'Bad authorization header';
+    res.status(status).json({ status, message });
+    return;
+  }
+  try {
+    verifyToken(req.headers.authorization.split(' ')[1]);
+    next();
+  } catch (err) {
+    const status = 401;
+    const message = 'Error: ACCESS_TOKEN is not valid';
+    res.status(status).json({ status, message });
+  }
+});
 
-// server.use(router)
-
-// server.listen(4000, () => {
-//   console.log('Run Auth API Server')
-// })
+server.listen(4000)

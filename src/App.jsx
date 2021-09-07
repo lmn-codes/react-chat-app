@@ -1,13 +1,17 @@
 import React from 'react';
 import './App.css';
-import Users from './components/Users';
+import { UsersContextProvider } from './contexts/UsersContextProvider'
+import Login from './pages/Login'
 
 function App() {
-  return (
-    <div className="App">
-      <Users />
-    </div>
-  );
+
+    return (
+        <div className="App">
+            <UsersContextProvider>
+                <Login />
+            </UsersContextProvider>
+        </div>
+    );
 }
 
 export default App;
