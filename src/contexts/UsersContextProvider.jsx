@@ -21,11 +21,11 @@ function UsersContextProvider({ children }) {
 }
 
 UsersContextProvider.propTypes = {
-    children: PropTypes.elementType
+    children: PropTypes.element
 }
 
 UsersContextProvider.defaultProps = {
-    children: undefined
+    children: null
 }
 
 export { UsersContextProvider, UsersContext };

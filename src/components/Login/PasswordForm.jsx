@@ -1,31 +1,42 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import { useHistory } from "react-router-dom";
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import storeJwtInMemory from '../../utils/auth/storeJwtInMemory';
+// import storeJwtInMemory from '../../utils/auth/storeJwtInMemory';
+import { useAuth } from '../../contexts/AuthContextProvider';
 
-function PasswordForm({ username, userId }) {
+function PasswordForm({ user }) {
     const [error, setError] = useState('');
     const [password, setPassword] = useState('');
+    const { dispatch } = useAuth();
+    const history = useHistory();
 
     async function authenticateUser() {
         const url = 'http://localhost:4000/auth/login';
         const payload = {
-            "username": username,
+            "username": user.name,
             "password": password
         }
         try {
             const response = await axios.post(url, payload);
-            if (response.data) {
-                console.log(response.data);
-                storeJwtInMemory.setToken(response.data);
-                localStorage.setItem("user_id", userId);
-            }
+            dispatch({
+                type: "LOGIN",
+                payload: {
+                    "user": user,
+                    "token": response.data.ACCESS_TOKEN
+                }
+            })
+            history.push('/');
         } catch (err) {
-            setError(err);
+            if (err.response) {
+                // Request made and server responded
+                setError(err.response.data.message);
+            } else {
+                setError('Something went wrong with the server. Please refresh and try again!');
+            }
         }
     }
 
-    if(error) return <p>{error.message}</p>
     return (
         <>
             <form action="POST">
@@ -38,18 +49,21 @@ function PasswordForm({ username, userId }) {
                 </label>
                 <button type="button" onClick={authenticateUser}>Login</button>
             </form>
+            {error && <p>{error}</p>}
         </>
     )
 }
 
 PasswordForm.propTypes = {
-    username: PropTypes.string,
-    userId: PropTypes.number
+    user: PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+        last_seen_at: PropTypes.string
+    })
 };
 
 PasswordForm.defaultProps = {
-    username: '',
-    userId: null
+    user: null
 };
 
 export default PasswordForm;

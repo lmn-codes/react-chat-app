@@ -7,7 +7,7 @@ function Login() {
     return (
         <>
             <LoginUserList chooseUser={user => setCurrentUser(user)}/>
-            {currentUser && <PasswordForm username={currentUser.name} userId={currentUser.id} />}
+            {currentUser && <PasswordForm user={currentUser} />}
         </>
     )
 }
