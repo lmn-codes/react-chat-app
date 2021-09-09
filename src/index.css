@@ -1,0 +1,40 @@
+@import url('App.css');
+@import url('./pages/Login.css');
+@import url('./pages/Chat.css');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Lucida Console", "Courier New", monospace;
+    color: var(--text-primary);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#root {
+    --primary-color: #2A0944;
+    --secondary-color: #3B185F;
+    --secondary-darker-color: #26142A;
+    --accent-color: #A12568;
+    --hightlight-color: #FEC260;
+    --text-primary: white;
+
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary-color);
+}
+
+input:focus, input:focus-visible {
+    outline: none;
+    border: 1px solid var(--accent-color);
+}
+
+input, button {
+    border: none;
+}
+
+input {
+    color: black;
+    padding: 0 2%;
+}

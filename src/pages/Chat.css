@@ -1,0 +1,181 @@
+main {
+    background-color: var(--secondary-darker-color);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat__wrapper {
+    height: 85vh;
+    width: 90vw;
+    border-radius: 25px;
+    background-color: var(--primary-color);
+    box-shadow: 3px 0px 27px -6px rgba(82,25,82,1);
+    display: flex;
+    padding: 2vh 2vw;
+}
+
+.chat__wrapper button {
+    background-color: var(--accent-color);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.create-chat__button, .logout__button {
+    position: absolute;
+    top: 2vh;
+}
+
+.create-chat__button {
+    left: 2vw;
+}
+
+.logout__button {
+    right: 2vw;
+}
+
+.show-rooms__button {
+    width: 3%;
+    word-break: break-all;
+    padding: 0 !important;
+}
+
+.chat-rooms-list__wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-rooms-list__wrapper > button {
+    margin: 5px 0;
+    text-align: left;
+}
+
+.chat-rooms-list__wrapper, .chat-screen__wrapper {
+    background-color: var(--secondary-color);
+    border-radius: 25px;
+    padding: 20px;
+}
+
+.chat-screen__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    margin-left: 5px;
+}
+
+.chat-screen__messages {
+    height: 90%;
+    overflow: scroll;
+}
+
+.chat-screen__form {
+    position: relative;
+    bottom: 0;
+}
+
+.chat-screen__form form {
+    width: 100%;
+    display: flex;
+}
+
+.chat-room__name {
+    width: 100%;
+    background-color: var(--accent-color);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.user_message {
+    text-align: left;
+    margin: 5px 0;
+    padding: 0 5px;
+    float: right;
+    clear: both;
+    min-height: 25px;
+    min-width: 25%;
+    max-width: 40%;
+    background-color: var(--hightlight-color);
+    color: black;
+}
+
+.member_message {
+    text-align: left;
+    margin: 5px 0;
+    padding: 0 5px;
+    float: left;
+    clear: both;
+    min-height: 25px;
+    min-width: 25%;
+    max-width: 40%;
+    background-color: var(--primary-color);
+}
+
+.send-message__label {
+    width: 90%;
+}
+
+.send-message__input-field {
+    width: 98%;
+    height: 5vh;
+    border-radius: 5px;
+}
+
+.chat-screen__send-button {
+    width: 10%;
+}
+
+.create-chat__modal__wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-chat__modal {
+    background-color: var(--primary-color);
+    width: 50%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.users-to-add__button__selected {
+    border: 2px solid var(--hightlight-color);
+}
+
+.room-name__input {
+    height: 5vh;
+}
+
+.create-room__button {
+    margin-top: 10px;
+}
+
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .chat-rooms-list__wrapper {
+        width: 25%;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}
