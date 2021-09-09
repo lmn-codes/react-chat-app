@@ -6,13 +6,12 @@ import {
 } from 'react-router-dom';
 import './App.css';
 import {UsersContextProvider} from './contexts/UsersContextProvider';
-import { AuthContextProvider } from './contexts/AuthContextProvider';
+import {AuthContextProvider} from './contexts/AuthContextProvider';
 import Login from './pages/Login';
 import Chat from './pages/Chat';
 import ProtectedRoute from './routes/ProtectedRoute';
 
 function App() {
-
     return (
         <div className="App">
             <AuthContextProvider>
@@ -23,7 +22,7 @@ function App() {
                                 <Login/>
                             </Route>
                             <ProtectedRoute path="/">
-                                <Chat />
+                                <Chat/>
                             </ProtectedRoute>
                         </Switch>
                     </Router>

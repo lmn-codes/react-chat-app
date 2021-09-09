@@ -1,17 +1,12 @@
 import React from "react";
-import { Redirect, Route } from "react-router-dom";
+import {Redirect, Route} from "react-router-dom";
 import PropTypes from "prop-types";
-import { useAuth } from '../contexts/AuthContextProvider';
 
-function ProtectedRoute({ children }) {
-    const {
-        state: { isAuthenticated },
-    }  = useAuth();
-
+function ProtectedRoute({children}) {
     return (
         <Route
             render={() =>
-                isAuthenticated ? children : <Redirect to="/login" />
+                localStorage.getItem('token') ? children : <Redirect to="/login"/>
             }
         />
     );
@@ -25,4 +20,4 @@ ProtectedRoute.defaultProps = {
     children: null
 }
 
-export default ProtectedRoute;
+export default React.memo(ProtectedRoute);

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
 import PropTypes from 'prop-types';
-// import storeJwtInMemory from '../../utils/auth/storeJwtInMemory';
 import { useAuth } from '../../contexts/AuthContextProvider';
 
 function PasswordForm({ user }) {
@@ -11,7 +10,8 @@ function PasswordForm({ user }) {
     const { dispatch } = useAuth();
     const history = useHistory();
 
-    async function authenticateUser() {
+    async function authenticateUser(e) {
+        e.preventDefault();
         const url = 'http://localhost:4000/auth/login';
         const payload = {
             "username": user.name,
@@ -26,6 +26,9 @@ function PasswordForm({ user }) {
                     "token": response.data.ACCESS_TOKEN
                 }
             })
+            // this process is unique to this component
+            localStorage.setItem("user_id", user.id)
+            localStorage.setItem("token", response.data.ACCESS_TOKEN)
             history.push('/');
         } catch (err) {
             if (err.response) {
@@ -39,15 +42,16 @@ function PasswordForm({ user }) {
 
     return (
         <>
-            <form action="POST">
-                <label htmlFor="password">
-                    Password
+            <form className="login-password__form" action="POST">
+                <label className="login-form__label" htmlFor="password">
+                    <h2>Password</h2>
                     <input type="password"
                            name="password"
                            placeholder="*******"
+                           className="login-form__input"
                            onChange={(e) => setPassword(e.target.value)}/>
                 </label>
-                <button type="button" onClick={authenticateUser}>Login</button>
+                <button className="login__button" type="submit" onClick={authenticateUser}><h3>Login</h3></button>
             </form>
             {error && <p>{error}</p>}
         </>

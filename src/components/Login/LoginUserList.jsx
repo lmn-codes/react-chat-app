@@ -15,7 +15,7 @@ function LoginUserList({chooseUser}) {
                             type="button"
                             onClick={() => {
                                 chooseUser(user);
-                                setSelected(user.id)
+                                setSelected(user.id);
                             }}>
                         <div className="user-button__image"/>
                         <p className="user-button__username">{user.name}</p>

@@ -6,8 +6,6 @@ const AuthContext = React.createContext();
 const reducer = (state, action) => {
     switch (action.type) {
         case "LOGIN":
-            localStorage.setItem("user", JSON.stringify(action.payload.user.id));
-            // localStorage.setItem("token", JSON.stringify(action.payload.token));
             return {
                 ...state,
                 isAuthenticated: true,
