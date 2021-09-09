@@ -1,0 +1,54 @@
+{
+  "users": [
+    {
+      "id": 10,
+      "name": "wessel",
+      "password": "bunq"
+    },
+    {
+      "id": 9,
+      "name": "sonnya",
+      "password": "bunq"
+    },
+    {
+      "id": 8,
+      "name": "nick",
+      "password": "bunq"
+    },
+    {
+      "id": 7,
+      "name": "mdemaa",
+      "password": "bunq"
+    },
+    {
+      "id": 6,
+      "name": "jordy",
+      "password": "bunq"
+    },
+    {
+      "id": 5,
+      "name": "jesper",
+      "password": "bunq"
+    },
+    {
+      "id": 4,
+      "name": "hilco",
+      "password": "bunq"
+    },
+    {
+      "id": 3,
+      "name": "bram",
+      "password": "bunq"
+    },
+    {
+      "id": 2,
+      "name": "andre",
+      "password": "bunq"
+    },
+    {
+      "id": 1,
+      "name": "ali",
+      "password": "bunq"
+    }
+  ]
+}
