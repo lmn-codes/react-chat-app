@@ -1,7 +1,8 @@
+// TODO: auto update the messages when new messages are added
+// TODO: style the messages better, now it overflows
 import React, {useContext, useState} from 'react';
 import axios from 'axios';
 import {RoomContext} from '../../contexts/RoomContextProvider';
-// import CreateChatButton from './CreateChatButton';
 
 function ChatScreen() {
     const currentUserId = localStorage.getItem('user_id');
@@ -20,7 +21,7 @@ function ChatScreen() {
             data: {
                 "text": messageToSend
             }
-        }).then(() => window.location.reload())
+        })
     }
 
     if(messages === null) return (

@@ -1,8 +1,8 @@
+// TODO: fix the reload problem 
 import React, {useContext, useState} from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import {UsersContext} from '../../contexts/UsersContextProvider';
-
-// import { useAuth } from '../../contexts/AuthContextProvider';
+import { useRooms } from '../../contexts/RoomsContextProvider';
 
 function CreateChatModal() {
     const users = useContext(UsersContext);
@@ -10,12 +10,12 @@ function CreateChatModal() {
     const usersToAdd = users.filter(user => user.id !== parseInt(currentUserId, 10));
     const [members, setMembers] = useState([]);
     const [roomName, setRoomName] = useState('')
+    const { createRoom } = useRooms();
 
     function handleUserChosen(id) {
         let newArray = [];
         // if user is already in the list, remove them
         if (members.includes(id)) {
-            // newArray = members.splice(members.indexOf(id), 1);
             newArray = members.filter(member => member !== id);
         } else {
             newArray = [...members, id]
@@ -23,20 +23,22 @@ function CreateChatModal() {
         setMembers(newArray);
     }
 
-    function createRoom() {
-        axios({
-            method: 'post',
-            url: `${process.env.REACT_APP_BUNQ_API_BASE_URL}/user/${currentUserId}/conversation`,
-            data: {
-                user_ids: members,
-                name: roomName
-            },
-            headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_BUNQ_API_TOKEN}`,
-            },
-        }).then(() => {
-            window.location.reload();
-        })
+    // function createRoom() {
+    //     axios({
+    //         method: 'post',
+    //         url: `${process.env.REACT_APP_BUNQ_API_BASE_URL}/user/${currentUserId}/conversation`,
+    //         data: {
+    //             user_ids: members,
+    //             name: roomName
+    //         },
+    //         headers: {
+    //             Authorization: `Bearer ${process.env.REACT_APP_BUNQ_API_TOKEN}`,
+    //         },
+    //     })
+    // }
+
+    function handleCreateRoom() {
+        createRoom(members, roomName);
     }
 
     return (
@@ -68,7 +70,7 @@ function CreateChatModal() {
                         )
                     }
 
-                <button className="create-room__button" type="button" onClick={createRoom}>Create Room</button>
+                <button className="create-room__button" type="button" onClick={handleCreateRoom}>Create Room</button>
             </div>
         </section>
     )

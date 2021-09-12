@@ -19,8 +19,6 @@ function RoomContextProvider({ children }) {
     if(error) {
         messages = null;
     } else {
-        // data.reverse();
-        console.log(data);
         messages = data;
     }
     if (isLoading) return <div>Loading...</div>;
