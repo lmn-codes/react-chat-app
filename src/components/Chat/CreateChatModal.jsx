@@ -23,20 +23,6 @@ function CreateChatModal() {
         setMembers(newArray);
     }
 
-    // function createRoom() {
-    //     axios({
-    //         method: 'post',
-    //         url: `${process.env.REACT_APP_BUNQ_API_BASE_URL}/user/${currentUserId}/conversation`,
-    //         data: {
-    //             user_ids: members,
-    //             name: roomName
-    //         },
-    //         headers: {
-    //             Authorization: `Bearer ${process.env.REACT_APP_BUNQ_API_TOKEN}`,
-    //         },
-    //     })
-    // }
-
     function handleCreateRoom() {
         createRoom(members, roomName);
     }

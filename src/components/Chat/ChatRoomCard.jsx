@@ -1,8 +1,10 @@
 // TODO: autoupdate the list of room once new chat is created 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useRoom } from '../../contexts/RoomContextProvider';
 
 function ChatRoomCard({ currentUserId, conversation }) {
+  const { setSelectedRoomId } = useRoom()
   let conversationName = 'No name';
 
   // check if it's 1-on-1 or 1-to-many
@@ -17,13 +19,20 @@ function ChatRoomCard({ currentUserId, conversation }) {
     conversationName = theOtherMember;
   }
 
+  function handleRoomChosen(roomId) {
+    setSelectedRoomId(roomId)
+  }
+
   return (
     <>
       <button
-        onClick={() => {
-          localStorage.setItem('room_id', conversation.id);
-          localStorage.setItem('room_name', conversationName);
-        }}
+        onClick={
+          () => {
+          // localStorage.setItem('room_id', conversation.id);
+          // localStorage.setItem('room_name', conversationName);
+          handleRoomChosen(conversation.id)
+        }
+      }
         className="chat-room__card"
         key={conversation.id}
         type="button"

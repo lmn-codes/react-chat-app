@@ -1,39 +1,71 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-import useAPIRequest from '../hooks/useAPIRequest';
+import axios from 'axios';
 
 const RoomContext = React.createContext(null);
 
 function RoomContextProvider({ children }) {
-    const roomId = localStorage.getItem('room_id');
-    const {
-        data,
-        error,
-        isLoading,
-    } = useAPIRequest({
-        url: `/user/${localStorage.getItem('user_id')}/conversation/${roomId}/message`,
-        method: 'get',
-    });
+  // const roomId = localStorage.getItem('room_id');
+  const currentUserId = localStorage.getItem('user_id');
+  const [selectedRoomId, setSelectedRoomId] = useState(0);
+  const [selectedRoom, setSelectedRoom] = useState(null);
+  const [messages, setMessages] = useState([]);
+  const [error, setError] = useState('');
 
-    let messages;
-    if(error) {
-        messages = null;
-    } else {
-        messages = data;
-    }
-    if (isLoading) return <div>Loading...</div>;
+  const getRooms = () => {
+    axios({
+      method: 'GET',
+      url: `${process.env.REACT_APP_BUNQ_API_BASE_URL}/user/${currentUserId}/conversation/${selectedRoomId}/message`,
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_BUNQ_API_TOKEN}`,
+      },
+    })
+      .then((response) => {
+        setMessages(response.data.data);
+      })
+      .catch((e) => {
+        setError(e);
+      });
+  }
 
-    return <RoomContext.Provider value={messages}>{children}</RoomContext.Provider>
+  useEffect(() => {
+    if(selectedRoomId) getRooms()
+  }, [selectedRoomId]);
+
+  const sendMessage = (messageToSend) => {
+    axios({
+      method: 'POST',
+      url: `${process.env.REACT_APP_BUNQ_API_BASE_URL}/user/${currentUserId}/conversation/${selectedRoomId}/message`,
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_BUNQ_API_TOKEN}`,
+      },
+      data: {
+        text: messageToSend,
+      },
+    })
+      .then((response) => {
+        setMessages((prevMessages) => [...prevMessages, response.data.data]);
+      })
+      .catch((e) => {
+        setError(e);
+      });
+  };
+
+  const value = { messages, error, sendMessage, setSelectedRoom, selectedRoom, selectedRoomId, setSelectedRoomId };
+
+  return <RoomContext.Provider value={value}>{children}</RoomContext.Provider>;
+}
+
+function useRoom() {
+  return useContext(RoomContext);
 }
 
 RoomContextProvider.propTypes = {
-    children: PropTypes.arrayOf(PropTypes.element)
-}
+  children: PropTypes.arrayOf(PropTypes.element),
+};
 
 RoomContextProvider.defaultProps = {
-    children: null
-}
+  children: null,
+};
 
-export { RoomContextProvider, RoomContext };
-
-
+export { RoomContextProvider, useRoom };
