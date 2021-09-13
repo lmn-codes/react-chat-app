@@ -9,8 +9,10 @@ function ChatScreen() {
     const currentUserId = localStorage.getItem('user_id');
     const [messageToSend, setMessageToSend] = useState('');
 
-    function handleSend() {
+    function handleSend(e) {
+        e.preventDefault();
         sendMessage(messageToSend);
+        setMessageToSend('');
     }
 
     if(!messages) return (
@@ -37,10 +39,10 @@ function ChatScreen() {
             <div className="chat-screen__form">
                 <form action="POST">
                     <label className="send-message__label" htmlFor="messageToSend">
-                        <input className="send-message__input-field" name="messageToSend" type="text"
+                        <input className="send-message__input-field" name="messageToSend" type="text" value={messageToSend}
                                onChange={(e) => setMessageToSend(e.target.value)}/>
                     </label>
-                    <button type="button" className="chat-screen__send-button" onClick={handleSend}>
+                    <button type="submit" className="chat-screen__send-button" onClick={handleSend}>
                         Send
                     </button>
                 </form>

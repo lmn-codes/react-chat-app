@@ -6,7 +6,7 @@ function CreateChatButton({ showModal }) {
 
     return (
         <>
-            <button className="create-chat__button" type="button" onClick={() => showModal()}>
+            <button className="create-chat__button" type="button" onClick={showModal}>
                 Create chat
             </button>
         </>
