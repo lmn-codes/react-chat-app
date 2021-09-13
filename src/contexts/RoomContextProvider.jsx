@@ -44,7 +44,7 @@ function RoomContextProvider({ children }) {
       },
     })
       .then((response) => {
-        setMessages((prevMessages) => [...prevMessages, response.data.data]);
+        setMessages((prevMessages) => [response.data.data, ...prevMessages]);
       })
       .catch((e) => {
         setError(e);

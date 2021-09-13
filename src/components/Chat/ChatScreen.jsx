@@ -30,7 +30,7 @@ function ChatScreen() {
             <p className="chat-room__name">{selectedRoom.name}</p>
             <div className="chat-screen__messages">
                 {
-                    messages.map((message) => {
+                    [...messages].reverse().map((message) => {
                         if (message.user_id === parseInt(currentUserId, 10)) return <p key={message.id} className="user_message">{message.text}</p>
                         return <p key={message.id} className="member_message">{message.text}</p>
                     })
