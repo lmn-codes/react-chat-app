@@ -4,17 +4,7 @@ import ChatRoomCard from './ChatRoomCard';
 import CreateChatButton from './CreateChatButton';
 
 function ChatRoomsList() {
-  const currentUserId = localStorage.getItem('user_id');
-  // const {
-  //   data: rooms,
-  //   error,
-  //   isLoading,
-  // } = useAPIRequest({
-  //   url: `/user/${currentUserId}/conversation`,
-  //   method: 'GET',
-  // });
   const { rooms, error } = useRooms();
-
 
   if (error) return <div>Error: {error.message}</div>;
   
@@ -31,8 +21,7 @@ function ChatRoomsList() {
       {rooms.map((conversation) => (
         <ChatRoomCard
           key={conversation.id}
-          currentUserId={currentUserId}
-          conversation={conversation}
+          room={conversation}
         />
       ))}
     </section>

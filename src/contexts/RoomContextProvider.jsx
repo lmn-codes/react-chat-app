@@ -5,9 +5,7 @@ import axios from 'axios';
 const RoomContext = React.createContext(null);
 
 function RoomContextProvider({ children }) {
-  // const roomId = localStorage.getItem('room_id');
   const currentUserId = localStorage.getItem('user_id');
-  // const [selectedRoomId, setSelectedRoomId] = useState(0);
   const [selectedRoom, setSelectedRoom] = useState(null);
   const [messages, setMessages] = useState([]);
   const [error, setError] = useState('');

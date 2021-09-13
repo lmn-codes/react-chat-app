@@ -1,76 +1,64 @@
-// TODO: autoupdate the list of room once new chat is created 
+// TODO: change all 'conversation' to 'room'
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useRoom } from '../../contexts/RoomContextProvider';
+import {useRoom} from '../../contexts/RoomContextProvider';
 
-function ChatRoomCard({ currentUserId, conversation }) {
-  const { setSelectedRoom } = useRoom()
-  let conversationName = 'No name';
+function ChatRoomCard({room}) {
+    const currentUserId = JSON.parse(localStorage.getItem('user_id'));
+    const {setSelectedRoom} = useRoom();
+    let roomName;
 
-  // check if it's 1-on-1 or 1-to-many
-  if (conversation.members.length > 2) {
-    conversationName = conversation.name;
-  } else {
-    let theOtherMember = '';
-    conversation.members.forEach((member) => {
-      if (member.id !== parseInt(currentUserId, 10))
-        theOtherMember = member.name;
-    });
-    conversationName = theOtherMember;
-  }
+    if (!room.name) {
+        const theOtherMember = room.members.filter((mem) => mem.id !== currentUserId)
+        roomName = theOtherMember[0].name;
+    } else {
+        roomName = room.name;
+    }
 
-  function handleRoomChosen(room) {
-    setSelectedRoom(room)
-  }
+    function handleRoomChosen() {
+        setSelectedRoom(room)
+    }
 
-  return (
-    <>
-      <button
-        onClick={
-          () => {
-          // localStorage.setItem('room_id', conversation.id);
-          // localStorage.setItem('room_name', conversationName);
-          handleRoomChosen(conversation)
-        }
-      }
-        className="chat-room__card"
-        key={conversation.id}
-        type="button"
-      >
-        <p className="chat-room__name">{conversationName}</p>
-        {conversation.last_message && (
-          <div className="chat-room-last-message__wrapper">
-            <p>{conversation.last_message.text}</p>
-          </div>
-        )}
-      </button>
-    </>
-  );
+    return (
+        <>
+            <button
+                onClick={handleRoomChosen}
+                className="chat-room__card"
+                key={room.id}
+                type="button"
+            >
+                <p className="chat-room__name">{roomName}</p>
+                {room.last_message && (
+                    <div className="chat-room-last-message__wrapper">
+                        <p className="chat-room__last-message">{room.last_message.text}</p>
+                    </div>
+                )}
+            </button>
+        </>
+    );
 }
 
 ChatRoomCard.propTypes = {
-  conversation: PropTypes.shape({
-    id: PropTypes.number,
-    name: PropTypes.string,
-    members: PropTypes.arrayOf(
-      PropTypes.shape({
+    room: PropTypes.shape({
         id: PropTypes.number,
         name: PropTypes.string,
-      })
-    ),
-    last_message: PropTypes.objectOf(
-      PropTypes.shape({
-        text: PropTypes.string,
-        sent_at: PropTypes.string,
-      })
-    ),
-  }),
-  currentUserId: PropTypes.string,
+        members: PropTypes.arrayOf(
+            PropTypes.shape({
+                id: PropTypes.number,
+                name: PropTypes.string,
+            })
+        ),
+        last_message: PropTypes.objectOf(
+            PropTypes.shape({
+                text: PropTypes.string,
+                sent_at: PropTypes.string,
+            })
+        ),
+    }),
 };
 
 ChatRoomCard.defaultProps = {
-  conversation: null,
-  currentUserId: null,
+    room: null
 };
 
 export default ChatRoomCard;

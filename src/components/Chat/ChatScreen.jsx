@@ -5,9 +5,18 @@ import { useRoom } from '../../contexts/RoomContextProvider';
 
 function ChatScreen() {
     const { messages, error, selectedRoom, sendMessage } = useRoom();
-    // const roomId = localStorage.getItem('room_id');
-    const currentUserId = localStorage.getItem('user_id');
+    const currentUserId = JSON.parse(localStorage.getItem('user_id'));
     const [messageToSend, setMessageToSend] = useState('');
+    let roomName;
+
+    if(!selectedRoom) return <p>No room selected. Please enter one!</p>
+
+    if (!selectedRoom.name) {
+        const theOtherMember = selectedRoom.members.filter((mem) => mem.id !== currentUserId)
+        roomName = theOtherMember[0].name;
+    } else {
+        roomName = selectedRoom.name;
+    }
 
     function handleSend(e) {
         e.preventDefault();
@@ -21,17 +30,15 @@ function ChatScreen() {
         </div>
     )
 
-    if(!selectedRoom) return <p>No room selected. Please enter one!</p>
-
     if(error) return <p className="error__message">{error}</p>
 
     return (
         <div className="chat-screen__wrapper">
-            <p className="chat-room__name">{selectedRoom.name}</p>
+            <p className="chat-room__name">{roomName}</p>
             <div className="chat-screen__messages">
                 {
                     [...messages].reverse().map((message) => {
-                        if (message.user_id === parseInt(currentUserId, 10)) return <p key={message.id} className="user_message">{message.text}</p>
+                        if (message.user_id === currentUserId) return <p key={message.id} className="user_message">{message.text}</p>
                         return <p key={message.id} className="member_message">{message.text}</p>
                     })
                 }
