@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useRoom } from '../../contexts/RoomContextProvider';
 
 function ChatRoomCard({ currentUserId, conversation }) {
-  const { setSelectedRoomId } = useRoom()
+  const { setSelectedRoom } = useRoom()
   let conversationName = 'No name';
 
   // check if it's 1-on-1 or 1-to-many
@@ -19,8 +19,8 @@ function ChatRoomCard({ currentUserId, conversation }) {
     conversationName = theOtherMember;
   }
 
-  function handleRoomChosen(roomId) {
-    setSelectedRoomId(roomId)
+  function handleRoomChosen(room) {
+    setSelectedRoom(room)
   }
 
   return (
@@ -30,7 +30,7 @@ function ChatRoomCard({ currentUserId, conversation }) {
           () => {
           // localStorage.setItem('room_id', conversation.id);
           // localStorage.setItem('room_name', conversationName);
-          handleRoomChosen(conversation.id)
+          handleRoomChosen(conversation)
         }
       }
         className="chat-room__card"

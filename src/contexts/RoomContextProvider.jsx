@@ -7,7 +7,7 @@ const RoomContext = React.createContext(null);
 function RoomContextProvider({ children }) {
   // const roomId = localStorage.getItem('room_id');
   const currentUserId = localStorage.getItem('user_id');
-  const [selectedRoomId, setSelectedRoomId] = useState(0);
+  // const [selectedRoomId, setSelectedRoomId] = useState(0);
   const [selectedRoom, setSelectedRoom] = useState(null);
   const [messages, setMessages] = useState([]);
   const [error, setError] = useState('');
@@ -15,7 +15,7 @@ function RoomContextProvider({ children }) {
   const getRooms = () => {
     axios({
       method: 'GET',
-      url: `${process.env.REACT_APP_BUNQ_API_BASE_URL}/user/${currentUserId}/conversation/${selectedRoomId}/message`,
+      url: `${process.env.REACT_APP_BUNQ_API_BASE_URL}/user/${currentUserId}/conversation/${selectedRoom.id}/message`,
       headers: {
         Authorization: `Bearer ${process.env.REACT_APP_BUNQ_API_TOKEN}`,
       },
@@ -29,13 +29,13 @@ function RoomContextProvider({ children }) {
   }
 
   useEffect(() => {
-    if(selectedRoomId) getRooms()
-  }, [selectedRoomId]);
+    if(selectedRoom) getRooms()
+  }, [selectedRoom]);
 
   const sendMessage = (messageToSend) => {
     axios({
       method: 'POST',
-      url: `${process.env.REACT_APP_BUNQ_API_BASE_URL}/user/${currentUserId}/conversation/${selectedRoomId}/message`,
+      url: `${process.env.REACT_APP_BUNQ_API_BASE_URL}/user/${currentUserId}/conversation/${selectedRoom.id}/message`,
       headers: {
         Authorization: `Bearer ${process.env.REACT_APP_BUNQ_API_TOKEN}`,
       },
@@ -51,7 +51,7 @@ function RoomContextProvider({ children }) {
       });
   };
 
-  const value = { messages, error, sendMessage, setSelectedRoom, selectedRoom, selectedRoomId, setSelectedRoomId };
+  const value = { messages, error, sendMessage, setSelectedRoom, selectedRoom };
 
   return <RoomContext.Provider value={value}>{children}</RoomContext.Provider>;
 }

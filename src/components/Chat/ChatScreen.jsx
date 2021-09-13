@@ -5,7 +5,7 @@ import { useRoom } from '../../contexts/RoomContextProvider';
 
 function ChatScreen() {
     const { messages, error, selectedRoom, sendMessage } = useRoom();
-    const roomId = localStorage.getItem('room_id');
+    // const roomId = localStorage.getItem('room_id');
     const currentUserId = localStorage.getItem('user_id');
     const [messageToSend, setMessageToSend] = useState('');
 
@@ -13,7 +13,7 @@ function ChatScreen() {
         sendMessage(messageToSend);
     }
 
-    if(!roomId) return (
+    if(!messages) return (
         <div className="chat-screen__no-messages">
             <p>No active messages. Please enter a room!</p>
         </div>
