@@ -20,8 +20,10 @@ function ChatScreen() {
 
     function handleSend(e) {
         e.preventDefault();
-        sendMessage(messageToSend);
-        setMessageToSend('');
+        if(messageToSend) {
+            sendMessage(messageToSend);
+            setMessageToSend('');
+        }
     }
 
     if(!messages) return (

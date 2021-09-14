@@ -1,16 +1,17 @@
 // TODO: fix the reload problem 
 import React, {useContext, useState} from 'react';
-// import axios from 'axios';
+import {Modal} from 'react-bootstrap';
+import PropTypes from 'prop-types';
 import {UsersContext} from '../../contexts/UsersContextProvider';
-import { useRooms } from '../../contexts/RoomsContextProvider';
+import {useRooms} from '../../contexts/RoomsContextProvider';
 
-function CreateChatModal() {
+function CreateChatModal({closeModal}) {
     const users = useContext(UsersContext);
-    const currentUserId = localStorage.getItem('user_id')
-    const usersToAdd = users.filter(user => user.id !== parseInt(currentUserId, 10));
+    const currentUserId = JSON.parse(localStorage.getItem('user_id'));
+    const usersToAdd = users.filter(user => user.id !== currentUserId);
     const [members, setMembers] = useState([]);
     const [roomName, setRoomName] = useState('')
-    const { createRoom } = useRooms();
+    const {createRoom} = useRooms();
 
     function handleUserChosen(id) {
         let newArray = [];
@@ -23,43 +24,64 @@ function CreateChatModal() {
         setMembers(newArray);
     }
 
-    function handleCreateRoom() {
+    function handleCreateRoom(e) {
+        e.preventDefault();
         createRoom(members, roomName);
+        closeModal();
     }
 
     return (
-        <section className="create-chat__modal__wrapper">
-            <div className="create-chat__modal">
-                <div className="create-chat__users__wrapper">
-                    {
-                        usersToAdd.map(user => (
-                            <button
-                                className={members.includes(user.id) ? "users-to-add__button__selected" : "users-to-add__button"}
-                                type="button"
-                                key={user.id}
-                                onClick={() => {
-                                    handleUserChosen(user.id)
-                                }}>
-                                {user.name}
-                            </button>
-                        ))
-                    }
-                </div>
+        <>
+            <Modal.Header closeButton>
+                Create chat
+            </Modal.Header>
+
+            <Modal.Body>
+                <h2>Create a chat room</h2>
+
+                <div className="create-chat__modal">
+                    <div className="create-chat__users__wrapper">
+                        {
+                            usersToAdd.map(user => (
+                                <button
+                                    className={members.includes(user.id) ? "users-to-add__button__selected" : "users-to-add__button"}
+                                    type="button"
+                                    key={user.id}
+                                    onClick={() => {
+                                        handleUserChosen(user.id)
+                                    }}>
+                                    {user.name}
+                                </button>
+                            ))
+                        }
+                    </div>
                     {
                         members.length > 1 && (
                             <form>
                                 <label className="room-name__label" htmlFor="Room name">
                                     Room name
-                                    <input className="room-name__input" type="text" required onChange={(e) => setRoomName(e.target.value)}/>
+                                    <input className="room-name__input" type="text" required
+                                           onChange={(e) => setRoomName(e.target.value)}/>
                                 </label>
                             </form>
                         )
                     }
+                </div>
 
-                <button className="create-room__button" type="button" onClick={handleCreateRoom}>Create Room</button>
-            </div>
-        </section>
+                <button className="create-room__button" type="submit" onClick={handleCreateRoom}>
+                    Create Room
+                </button>
+            </Modal.Body>
+        </>
     )
+}
+
+CreateChatModal.propTypes = {
+    closeModal: PropTypes.func
+}
+
+CreateChatModal.defaultProps = {
+    closeModal: null
 }
 
 export default CreateChatModal;

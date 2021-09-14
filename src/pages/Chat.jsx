@@ -1,35 +1,35 @@
 // TODO: implement bootstrap modal for create chat modal
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import { Modal, Button } from 'react-bootstrap';
 import {
   ChatRoomsList,
   CreateChatModal,
   LogoutButton,
   ChatScreen,
-  CreateChatButton,
 } from '../components';
 import { RoomContextProvider } from '../contexts/RoomContextProvider';
 import { RoomsContextProvider } from '../contexts/RoomsContextProvider';
 
 function Chat() {
-  const [showModal, setShowModal] = useState(false);
-  const [showRoomsList, setShowRoomsList] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false)
+
+  const closeModal = useCallback(() => {
+    setModalOpen(false)
+  }, [])
 
   return (
     <main>
       <section className="chat__wrapper">
         <RoomsContextProvider>
           <RoomContextProvider>
-            <button
-              type="button"
-              className="show-rooms__button"
-              onClick={() => setShowRoomsList(!showRoomsList)}
-            >
-              Show Rooms
-            </button>
-            <CreateChatButton showModal={() => setShowModal(!showModal)} />
-            {showRoomsList && <ChatRoomsList />}
+            <ChatRoomsList />
             <ChatScreen />
-            {showModal && <CreateChatModal />}
+            <Button onClick={() => setModalOpen(true)} className="rounded-0 create-chat__button">
+              Create chat
+            </Button>
+            <Modal show={modalOpen} onHide={closeModal}>
+              <CreateChatModal closeModal={closeModal}/>
+            </Modal>
             <LogoutButton />
           </RoomContextProvider>
         </RoomsContextProvider>
