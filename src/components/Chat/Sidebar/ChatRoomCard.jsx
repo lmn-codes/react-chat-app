@@ -1,11 +1,9 @@
 // TODO: change all 'conversation' to 'room'
 import React from 'react';
 import PropTypes from 'prop-types';
-import {useRoom} from '../../contexts/RoomContextProvider';
 
 function ChatRoomCard({room}) {
     const currentUserId = JSON.parse(localStorage.getItem('user_id'));
-    const {setSelectedRoom} = useRoom();
     let roomName;
 
     if (!room.name) {
@@ -15,25 +13,16 @@ function ChatRoomCard({room}) {
         roomName = room.name;
     }
 
-    function handleRoomChosen() {
-        setSelectedRoom(room)
-    }
-
     return (
         <>
-            <button
-                onClick={handleRoomChosen}
-                className="chat-room__card"
-                key={room.id}
-                type="button"
-            >
+            <div className="chat-room__card overflow-hidden">
                 <p className="chat-room__name">{roomName}</p>
                 {room.last_message && (
                     <div className="chat-room-last-message__wrapper">
                         <p className="chat-room__last-message">{room.last_message.text}</p>
                     </div>
                 )}
-            </button>
+            </div>
         </>
     );
 }

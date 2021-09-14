@@ -27,8 +27,9 @@ function PasswordForm({ user }) {
                 }
             })
             // this process is unique to this component
-            localStorage.setItem("user_id", user.id)
-            localStorage.setItem("token", response.data.ACCESS_TOKEN)
+            localStorage.setItem("user_id", user.id);
+            localStorage.setItem("username", user.name);
+            localStorage.setItem("token", response.data.ACCESS_TOKEN);
             history.push('/');
         } catch (err) {
             if (err.response) {

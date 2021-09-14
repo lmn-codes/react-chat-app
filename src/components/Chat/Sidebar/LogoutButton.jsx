@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
-import {useAuth} from '../../contexts/AuthContextProvider';
+import {useAuth} from '../../../contexts/AuthContextProvider';
 
 function LogoutButton() {
     const history = useHistory();

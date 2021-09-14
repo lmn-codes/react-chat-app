@@ -2,8 +2,8 @@
 import React, {useContext, useState} from 'react';
 import {Modal} from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import {UsersContext} from '../../contexts/UsersContextProvider';
-import {useRooms} from '../../contexts/RoomsContextProvider';
+import {UsersContext} from '../../../contexts/UsersContextProvider';
+import {useRooms} from '../../../contexts/RoomsContextProvider';
 
 function CreateChatModal({closeModal}) {
     const users = useContext(UsersContext);

@@ -38,3 +38,7 @@ input {
     color: black;
     padding: 0 2%;
 }
+
+button {
+    background-color: transparent;
+}

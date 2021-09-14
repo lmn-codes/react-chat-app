@@ -10,7 +10,7 @@ function RoomContextProvider({ children }) {
   const [messages, setMessages] = useState([]);
   const [error, setError] = useState('');
 
-  const getRooms = () => {
+  const getMessages = () => {
     axios({
       method: 'GET',
       url: `${process.env.REACT_APP_BUNQ_API_BASE_URL}/user/${currentUserId}/conversation/${selectedRoom.id}/message`,
@@ -27,7 +27,7 @@ function RoomContextProvider({ children }) {
   }
 
   useEffect(() => {
-    if(selectedRoom) getRooms()
+    if(selectedRoom) getMessages()
   }, [selectedRoom]);
 
   const sendMessage = (messageToSend) => {
