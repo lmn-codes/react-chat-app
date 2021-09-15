@@ -13,16 +13,33 @@
 }
 
 #root {
-    --primary-color: #2A0944;
-    --secondary-color: #3B185F;
-    --secondary-darker-color: #26142A;
-    --accent-color: #A12568;
-    --hightlight-color: #FEC260;
-    --text-primary: white;
+    --primary-color: #4E426D;
+    --secondary-color: #5C4F81;
+    --accent-color: #3BC4B7;
+    --highlight-color: #EFAA86;
+    --text-primary: #F8EEE7;
+    --text-red: #DA0037;
 
     margin: 0;
     padding: 0;
     background-color: var(--primary-color);
+}
+
+.modal-dialog {
+    --primary-color: #4E426D;
+    --secondary-color: #5C4F81;
+    --accent-color: #3BC4B7;
+    --highlight-color: #EFAA86;
+    --text-primary: #F8EEE7;
+    --text-red: #DA0037;
+}
+
+.modal-dialog * {
+    color: black;
+}
+
+body {
+    color: var(--text-primary);
 }
 
 input:focus, input:focus-visible {

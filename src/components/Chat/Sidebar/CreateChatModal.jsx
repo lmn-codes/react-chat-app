@@ -1,4 +1,3 @@
-// TODO: fix the reload problem 
 import React, {useContext, useState} from 'react';
 import {Modal} from 'react-bootstrap';
 import PropTypes from 'prop-types';
@@ -10,7 +9,8 @@ function CreateChatModal({closeModal}) {
     const currentUserId = JSON.parse(localStorage.getItem('user_id'));
     const usersToAdd = users.filter(user => user.id !== currentUserId);
     const [members, setMembers] = useState([]);
-    const [roomName, setRoomName] = useState('')
+    const [roomName, setRoomName] = useState('');
+    const [error, setError] = useState('');
     const {createRoom} = useRooms();
 
     function handleUserChosen(id) {
@@ -26,8 +26,12 @@ function CreateChatModal({closeModal}) {
 
     function handleCreateRoom(e) {
         e.preventDefault();
-        createRoom(members, roomName);
-        closeModal();
+        if(!roomName && members.length > 1) {
+            setError('Room name is required!');
+        } else {
+            createRoom(members, roomName);
+            closeModal();
+        }
     }
 
     return (
@@ -36,15 +40,13 @@ function CreateChatModal({closeModal}) {
                 Create chat
             </Modal.Header>
 
-            <Modal.Body>
-                <h2>Create a chat room</h2>
-
+            <Modal.Body className="d-flex flex-column align-items-center">
                 <div className="create-chat__modal">
-                    <div className="create-chat__users__wrapper">
+                    <div className="create-chat__users__wrapper mb-3">
                         {
                             usersToAdd.map(user => (
                                 <button
-                                    className={members.includes(user.id) ? "users-to-add__button__selected" : "users-to-add__button"}
+                                    className={members.includes(user.id) ? "users-to-add__button selected" : "users-to-add__button"}
                                     type="button"
                                     key={user.id}
                                     onClick={() => {
@@ -57,9 +59,9 @@ function CreateChatModal({closeModal}) {
                     </div>
                     {
                         members.length > 1 && (
-                            <form>
-                                <label className="room-name__label" htmlFor="Room name">
-                                    Room name
+                            <form className="mb-4" onSubmit={handleCreateRoom}>
+                                <label className="room-name__label w-100 d-flex flex-column align-items-center" htmlFor="Room name">
+                                    <p>Room name <span className="d-inline text-danger">*</span></p>    
                                     <input className="room-name__input" type="text" required
                                            onChange={(e) => setRoomName(e.target.value)}/>
                                 </label>
@@ -68,7 +70,9 @@ function CreateChatModal({closeModal}) {
                     }
                 </div>
 
-                <button className="create-room__button" type="submit" onClick={handleCreateRoom}>
+                {error && <p className="text-danger">{error}</p>}
+
+                <button className="create-room__button" type="button" onClick={handleCreateRoom}>
                     Create Room
                 </button>
             </Modal.Body>

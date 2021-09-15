@@ -1,12 +1,14 @@
-// TODO: change all 'conversation' to 'room'
 import React from 'react';
 import PropTypes from 'prop-types';
-import {useRoom} from '../../../contexts/RoomContextProvider';
 
 function ChatRoomCard({room}) {
     const currentUserId = JSON.parse(localStorage.getItem('user_id'));
-    const { lastMessage } = useRoom();
     let roomName;
+    
+    function getLastMessage(message) {
+        // shorten the original message to fit the room card
+        return message.substr(0, 25);
+    }
 
     if (!room.name) {
         const theOtherMember = room.members.filter((mem) => mem.id !== currentUserId)
@@ -18,10 +20,10 @@ function ChatRoomCard({room}) {
     return (
         <>
             <div className="chat-room__card overflow-hidden">
-                <p className="chat-room__name">{roomName}</p>
+                <p><strong className="chat-room__name">{roomName}</strong></p>
                 {room.last_message && (
                     <div className="chat-room-last-message__wrapper">
-                        <p className="chat-room__last-message">{lastMessage}</p>
+                        <p className="chat-room__last-message">{getLastMessage(room.last_message.text)}</p>
                     </div>
                 )}
             </div>
@@ -43,6 +45,7 @@ ChatRoomCard.propTypes = {
             PropTypes.shape({
                 text: PropTypes.string,
                 sent_at: PropTypes.string,
+                substr: PropTypes.func
             })
         ),
     }),
