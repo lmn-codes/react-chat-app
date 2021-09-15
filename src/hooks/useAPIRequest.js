@@ -13,7 +13,7 @@ const useAPIRequest = ({ url, method, body = null ?? '' }) => {
     headers: {
       Authorization: `Bearer ${process.env.REACT_APP_BUNQ_API_TOKEN}`,
     },
-    body
+    body,
   };
 
   const performRequest = async () => {

@@ -1,88 +1,94 @@
 .login__page {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #login__users-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 50%;
 }
 
-.user-button, .user-button__selected {
-    width: 50px;
-    height: 50px;
-    border-radius: 10%;
-    background-color: var(--secondary-color);
-    margin: 5px;
-    text-align: center;
-    border: none;
+.user-button,
+.user-button__selected {
+  width: 50px;
+  height: 50px;
+  border-radius: 10%;
+  background-color: var(--secondary-color);
+  margin: 5px;
+  text-align: center;
+  border: none;
 }
 
 .user-button {
-    filter: drop-shadow(0 0 0.75rem var(--secondary-darker-color));
+  filter: drop-shadow(0 0 0.75rem var(--secondary-darker-color));
 }
 
 .user-button__username {
-    color: var(--text-primary);
-    font-size: 70%;
+  color: var(--text-primary);
+  font-size: 70%;
 }
 
 .user-button__selected {
-    border: 1px solid var(--accent-color);
-    filter: drop-shadow(0 0 0.75rem var(--accent-color));
+  border: 1px solid var(--accent-color);
+  filter: drop-shadow(0 0 0.75rem var(--accent-color));
 }
 
 .login-password__form {
-    display: flex;
-    flex-direction: column;
-    width: 25%;
-    align-items: center;
-    margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  align-items: center;
+  margin-top: 20px;
 }
 
 .login-form__label {
-    color: var(--text-primary);
-    font-size: 15px;
+  color: var(--text-primary);
+  font-size: 15px;
 }
 
 .login-form__input {
-    border: none;
-    background-color: var(--secondary-color);
+  border: none;
+  background-color: var(--secondary-color);
 }
 
 .login__button {
-    border: none;
-    background-color: var(--accent-color);
-    padding: 5px;
-    border-radius: 5px;
-    margin-top: 10px;
+  border: none;
+  background-color: var(--accent-color);
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 10px;
 }
 
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {}
+@media only screen and (max-width: 600px) {
+}
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {}
+@media only screen and (min-width: 600px) {
+}
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-    .user-button, .user-button__selected {
-        width: 100px;
-        height: 100px;
-        border-radius: 20px;
-    }
-    .user-button__username {
-        font-size: 15px;
-    }
+  .user-button,
+  .user-button__selected {
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+  }
+  .user-button__username {
+    font-size: 15px;
+  }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {}
+@media only screen and (min-width: 992px) {
+}
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {}
+@media only screen and (min-width: 1200px) {
+}

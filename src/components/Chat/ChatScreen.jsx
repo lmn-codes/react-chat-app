@@ -11,8 +11,7 @@ import { UsersContext } from '../../contexts/UsersContextProvider';
 
 function ChatScreen() {
   const users = useContext(UsersContext);
-  const { messages, error, setSelectedRoom, selectedRoom, sendMessage } =
-    useRoom();
+  const { messages, error, setSelectedRoom, selectedRoom, sendMessage } = useRoom();
   const currentUserId = JSON.parse(localStorage.getItem('user_id'));
   const [messageToSend, setMessageToSend] = useState('');
   let roomName;
@@ -53,10 +52,9 @@ function ChatScreen() {
   }
 
   const getRoomInfo = () => {
-    const memberArray = selectedRoom.members.map(mem => mem.name);
+    const memberArray = selectedRoom.members.map((mem) => mem.name);
     return memberArray.join(', ');
-  }
-  
+  };
 
   return (
     <section className="chat-screen h-100 d-flex flex-column justify-content-between flex-grow-1">
@@ -69,7 +67,9 @@ function ChatScreen() {
         </h5>
         <OverlayTrigger
           placement="left"
-          overlay={<Tooltip id="tooltip-left">{`Members: ${getRoomInfo()}`}</Tooltip>}
+          overlay={
+            <Tooltip id="tooltip-left">{`Members: ${getRoomInfo()}`}</Tooltip>
+          }
         >
           <FontAwesomeIcon icon={faInfoCircle} />
         </OverlayTrigger>

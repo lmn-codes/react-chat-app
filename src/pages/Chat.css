@@ -2,280 +2,275 @@
    SIDEBAR
    ========================================================================== */
 
-
 /* Sidebar Header
-   ========================================================================== */ 
+   ========================================================================== */
 
 .sidebar__header {
-    height: 8vh;
+  height: 8vh;
 }
 
-.sidebar__header, .chat-rooms-list__wrapper, .chat-screen__messages__wrapper {
-    background-color: var(--secondary-color);
-    border-radius: 20px;
+.sidebar__header,
+.chat-rooms-list__wrapper,
+.chat-screen__messages__wrapper {
+  background-color: var(--secondary-color);
+  border-radius: 20px;
 }
 
 .current-user__toggle.dropdown-toggle {
-    background-color: var(--primary-color);
-    border: 1px solid var(--primary-color);
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
 }
 
 .current-user__toggle.dropdown-toggle:hover {
-    border: 1px solid transparent;
-    background-color: var(--accent-color);
-    box-shadow: 0 0 0 .25rem rgba(49,132,253,.5);
+  border: 1px solid transparent;
+  background-color: var(--accent-color);
+  box-shadow: 0 0 0 0.25rem rgba(49, 132, 253, 0.5);
 }
 
 .current-user__toggle.dropdown-toggle:active,
 .show.dropdown .btn-primary.dropdown-toggle {
-    background-color: var(--accent-color);
-    box-shadow: none;
-    border-color: transparent;
+  background-color: var(--accent-color);
+  box-shadow: none;
+  border-color: transparent;
 }
 
 .current-user__toggle.dropdown-toggle:focus {
-    background-color: var(--primary-color);
-    box-shadow: none;
-    border-color: transparent;
+  background-color: var(--primary-color);
+  box-shadow: none;
+  border-color: transparent;
 }
 
 .dropdown-menu.show {
-    background-color: var(--text-primary);
+  background-color: var(--text-primary);
 }
 
 .dropdown-menu.show a:hover {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 .dropdown-menu.show a button {
-    color: var(--text-red);
+  color: var(--text-red);
 }
 
 .dropdown-toggle::after {
-    display: none!important;
+  display: none !important;
 }
 
 .create-chat__modal .users-to-add__button {
-    padding: 5px;
-    margin: 5px;
-    border: 1px solid var(--accent-color);
-    border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid var(--accent-color);
+  border-radius: 5px;
 }
 
 .create-chat__modal .users-to-add__button.selected {
-    background-color: var(--accent-color);
+  background-color: var(--accent-color);
 }
 
 .create-chat__modal form input {
-    border: 1px solid var(--accent-color);
-    min-height: 30px;
+  border: 1px solid var(--accent-color);
+  min-height: 30px;
 }
 
 .create-room__button {
-    background-color: var(--highlight-color);
-    padding: 10px;
-    border-radius: 10px;
+  background-color: var(--highlight-color);
+  padding: 10px;
+  border-radius: 10px;
 }
 
 /* Sidebar Chat Rooms List 
-   ========================================================================== */ 
+   ========================================================================== */
 
 .chat-rooms__header {
-    border-radius: 20px 0px 0px 0px;
-    padding: 20px 0 0 20px;
-    background-color: var(--secondary-color);
-    border-bottom: 2px solid var(--primary-color);
+  border-radius: 20px 0px 0px 0px;
+  padding: 20px 0 0 20px;
+  background-color: var(--secondary-color);
+  border-bottom: 2px solid var(--primary-color);
 }
 
 .chat-rooms__header strong {
-    color: var(--highlight-color);
+  color: var(--highlight-color);
 }
 
 .chat-rooms-list__wrapper {
-    background-color: var(--secondary-color);
+  background-color: var(--secondary-color);
 }
 
 .chat-rooms-list .list-group-item {
-    padding: 10px 5px;
-    border-radius: 5px;
-    overflow: hidden;
-    background-color: transparent;
-    border: none;
-    border-bottom: 1px solid var(--primary-color);
+  padding: 10px 5px;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--primary-color);
 }
 
 .chat-rooms-list .list-group-item.active {
-    background-color: var(--highlight-color);
-    border-color: transparent;
+  background-color: var(--highlight-color);
+  border-color: transparent;
 }
 
 .chat-rooms-list .list-group-item:not(.active):hover {
-    background-color: transparent;
+  background-color: transparent;
 }
-
 
 .chat-room__card p {
-    text-align: start;
+  text-align: start;
 }
-
 
 /* ==========================================================================
    CHAT SCREEN
    ========================================================================== */
 
-
 /* Chat screen Messages
-   ========================================================================== */   
+   ========================================================================== */
 
 .chat-screen__messages__wrapper {
-    height: 90%;
+  height: 90%;
 }
 
 .chat-message__wrapper {
-    max-width: 45%;
+  max-width: 45%;
 }
 
 .chat-message__wrapper p {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
-.user-message, .member-message {
-    padding: 10px;
-    border-radius: 10px;
+.user-message,
+.member-message {
+  padding: 10px;
+  border-radius: 10px;
 }
 
 .user-message {
-    background-color: var(--highlight-color);
+  background-color: var(--highlight-color);
 }
 
 .member-message {
-    background-color: var(--primary-color);
+  background-color: var(--primary-color);
 }
 
 .chat-screen__form {
-    height: 5%;
+  height: 5%;
 }
 
 .chat-screen__form form label input {
-    border-radius: 20px 0 0 20px ;
+  border-radius: 20px 0 0 20px;
 }
 
 .chat-screen__send-button {
-    border-radius: 0px 20px 20px 0;
-    background-color: var(--accent-color);
+  border-radius: 0px 20px 20px 0;
+  background-color: var(--accent-color);
 }
-
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-    .chat__wrapper .row {
-        display: block;
-    }
+  .chat__wrapper .row {
+    display: block;
+  }
 
-    .sidebar, .chat-screen {
-        width: 100vw;
-        height: 100vw;
-        padding: 3%;
-        position: absolute;
-        top: 0;
-    }
+  .sidebar,
+  .chat-screen {
+    width: 100vw;
+    height: 100vw;
+    padding: 3%;
+    position: absolute;
+    top: 0;
+  }
 
-    .sidebar {
-        z-index: 2;
-    }
+  .sidebar {
+    z-index: 2;
+  }
 
-    .sidebar.false {
-        display: none;
-    }
+  .sidebar.false {
+    display: none;
+  }
 
-    .sidebar.true {
-        display: block;
-    }
+  .sidebar.true {
+    display: block;
+  }
 
-    .chat-screen {
-        z-index: 1;
-    }
-
+  .chat-screen {
+    z-index: 1;
+  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-    .chat__wrapper .row {
-        display: block;
-    }
+  .chat__wrapper .row {
+    display: block;
+  }
 
-    .sidebar, .chat-screen {
-        width: 100vw;
-        height: 100vw;
-        padding: 3%;
-        position: absolute;
-        top: 0;
-    }
+  .sidebar,
+  .chat-screen {
+    width: 100vw;
+    height: 100vw;
+    padding: 3%;
+    position: absolute;
+    top: 0;
+  }
 
-    .sidebar {
-        z-index: 2;
-    }
+  .sidebar {
+    z-index: 2;
+  }
 
-    .sidebar.false {
-        display: none;
-    }
+  .sidebar.false {
+    display: none;
+  }
 
-    .sidebar.true {
-        display: block;
-    }
+  .sidebar.true {
+    display: block;
+  }
 
-    .chat-screen {
-        z-index: 1;
-    }
-  
-
+  .chat-screen {
+    z-index: 1;
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-    .chat__wrapper .row {
-        display: flex;
-    }
+  .chat__wrapper .row {
+    display: flex;
+  }
 
-    .back__button {
-        display: none;
-    }
+  .back__button {
+    display: none;
+  }
 
-    .sidebar, .chat-screen {
-        width: 100%;
-        height: 100%;
-        padding: 0;
-        position: static;
-        
-    }
+  .sidebar,
+  .chat-screen {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    position: static;
+  }
 
-    .sidebar {
-        z-index: 1;
-    }
+  .sidebar {
+    z-index: 1;
+  }
 
-    .sidebar.false {
-        display: none;
-    }
+  .sidebar.false {
+    display: none;
+  }
 
-    .sidebar.true {
-        display: block;
-    }
+  .sidebar.true {
+    display: block;
+  }
 
-    .chat-screen {
-        z-index: 1;
-    }
+  .chat-screen {
+    z-index: 1;
+  }
 
-    .chat-room__card {
-        height: 85px;
-    }
+  .chat-room__card {
+    height: 85px;
+  }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-    
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-
 }

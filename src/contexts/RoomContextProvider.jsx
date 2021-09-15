@@ -24,14 +24,13 @@ function RoomContextProvider({ children }) {
       .catch((e) => {
         setError(e);
       });
-  }
+  };
 
   useEffect(() => {
-    if(selectedRoom) {
+    if (selectedRoom) {
       getMessages();
     }
   }, [selectedRoom]);
-  
 
   const sendMessage = (messageToSend) => {
     axios({

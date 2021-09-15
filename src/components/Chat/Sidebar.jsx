@@ -12,14 +12,16 @@ function Sidebar() {
 
   useEffect(() => {
     setShowSidebar(selectedRoom === null);
-  }, [selectedRoom])
+  }, [selectedRoom]);
 
   const closeModal = () => {
     setModalOpen(false);
   };
 
   return (
-    <section className={`sidebar h-100 d-md-flex flex-column overflow-hidden ${showSidebar}`}>
+    <section
+      className={`sidebar h-100 d-md-flex flex-column overflow-hidden ${showSidebar}`}
+    >
       <div className="sidebar__header d-flex justify-content-between align-items-center px-3">
         <CurrentUser />
         <OverlayTrigger
@@ -36,11 +38,14 @@ function Sidebar() {
         </OverlayTrigger>
 
         <Modal show={modalOpen} onHide={closeModal}>
-          <CreateChatModal className="create-chat__modal" closeModal={closeModal} />
+          <CreateChatModal
+            className="create-chat__modal"
+            closeModal={closeModal}
+          />
         </Modal>
       </div>
 
-      <ChatRoomsList toggleSidebar={() => setShowSidebar(!showSidebar)}/>
+      <ChatRoomsList toggleSidebar={() => setShowSidebar(!showSidebar)} />
     </section>
   );
 }
