@@ -11,7 +11,7 @@ import { UsersContext } from '../../contexts/UsersContextProvider';
 
 function ChatScreen() {
   const users = useContext(UsersContext);
-  const { messages, error, setSelectedRoom, selectedRoom, sendMessage } = useRoom();
+  const { messages, error, setSelectedRoom, selectedRoom, sendMessage, changeLastMessage } = useRoom();
   const currentUserId = JSON.parse(localStorage.getItem('user_id'));
   const [messageToSend, setMessageToSend] = useState('');
   let roomName;
@@ -36,6 +36,7 @@ function ChatScreen() {
     e.preventDefault();
     if (messageToSend) {
       sendMessage(messageToSend);
+      changeLastMessage(messageToSend, selectedRoom.id);
       setMessageToSend('');
     }
   }
