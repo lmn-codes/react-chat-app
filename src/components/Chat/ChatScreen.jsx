@@ -41,19 +41,19 @@ function ChatScreen() {
   if (error) return <p className="error__message">{error}</p>;
 
   return (
-    <section className="chat-screen d-flex flex-column flex-grow-1">
+    <section className="chat-screen h-100 d-flex flex-column flex-grow-1">
       <p className="chat-room__name">{roomName}</p>
       <div
         className={
-          messages.length > 0 ? `chat-screen__messages` : `wrapper__empty`
+          messages.length > 0 ? `chat-screen__messages flex-grow-1` : `wrapper__empty flex-grow-1`
         }
       >
         <div className="chat-screen__messages-list d-flex flex-column align-items-start justify-content-end px-3">
           {[...messages].reverse().map((message) => {
             if (message.user_id === currentUserId) {
               return (
-                <div className="chat-message__wrapper align-self-end align-items-end">
-                  <p key={message.id} className="user_message ">
+                <div key={message.id} className="chat-message__wrapper align-self-end align-items-end">
+                  <p className="user_message ">
                     {message.text}
                   </p>
                   <p className="sender">You</p>
@@ -62,8 +62,8 @@ function ChatScreen() {
             }
 
             return (
-              <div className="chat-message__wrapper align-items-start">
-                <p key={message.id} className="member_message">
+              <div key={message.id} className="chat-message__wrapper align-items-start">
+                <p className="member_message">
                   {message.text}
                 </p>
                 <p className="sender">{senderName(message.user_id)}</p>
@@ -73,10 +73,10 @@ function ChatScreen() {
         </div>
       </div>
       <div className="chat-screen__form">
-        <form action="POST">
-          <label className="send-message__label" htmlFor="messageToSend">
+        <form action="POST" className="d-flex">
+          <label className="send-message__label flex-grow-1 me-5" htmlFor="messageToSend">
             <input
-              className="send-message__input-field"
+              className="send-message__input-field w-100"
               name="messageToSend"
               type="text"
               value={messageToSend}
@@ -85,7 +85,7 @@ function ChatScreen() {
           </label>
           <button
             type="submit"
-            className="chat-screen__send-button"
+            className="chat-screen__send-button w-15"
             onClick={handleSend}
           >
             Send

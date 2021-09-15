@@ -15,7 +15,7 @@ function Chat() {
                 <RoomsContextProvider>
                     <RoomContextProvider>
                         <Container className="h-100">
-                            <Row>
+                            <Row className="h-100 p-5">
                                 <Col md={3}><Sidebar/></Col>
                                 <Col md={9}><ChatScreen/></Col>
                             </Row>

@@ -8,6 +8,7 @@ function RoomContextProvider({ children }) {
   const currentUserId = localStorage.getItem('user_id');
   const [selectedRoom, setSelectedRoom] = useState(null);
   const [messages, setMessages] = useState([]);
+  const [lastMessage, setLastMessage] = useState('');
   const [error, setError] = useState('');
 
   const getMessages = () => {
@@ -27,8 +28,12 @@ function RoomContextProvider({ children }) {
   }
 
   useEffect(() => {
-    if(selectedRoom) getMessages()
+    if(selectedRoom) {
+      getMessages();
+      setLastMessage(selectedRoom.last_message.text);
+    }
   }, [selectedRoom]);
+  
 
   const sendMessage = (messageToSend) => {
     axios({
@@ -43,13 +48,14 @@ function RoomContextProvider({ children }) {
     })
       .then((response) => {
         setMessages((prevMessages) => [response.data.data, ...prevMessages]);
+        setLastMessage(messageToSend);
       })
       .catch((e) => {
         setError(e);
       });
   };
 
-  const value = { messages, error, sendMessage, setSelectedRoom, selectedRoom };
+  const value = { messages, error, sendMessage, setSelectedRoom, selectedRoom, lastMessage };
 
   return <RoomContext.Provider value={value}>{children}</RoomContext.Provider>;
 }
