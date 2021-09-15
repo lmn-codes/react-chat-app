@@ -14,7 +14,7 @@ function ChatRoomsList() {
   if (rooms.length === 0)
     return (
       <>
-        <div className="wrapper__empty ">
+        <div className="wrapper__empty">
           No active room. Please create one.
         </div>
       </>

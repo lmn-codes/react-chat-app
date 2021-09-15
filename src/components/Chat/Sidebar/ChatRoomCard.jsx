@@ -21,7 +21,7 @@ function ChatRoomCard({ room }) {
 
   return (
     <>
-      <div className="chat-room__card overflow-hidden">
+      <div className="chat-room__card d-flex flex-column justify-content-between overflow-hidden">
         <p>
           <strong className="chat-room__name">{roomName}</strong>
         </p>

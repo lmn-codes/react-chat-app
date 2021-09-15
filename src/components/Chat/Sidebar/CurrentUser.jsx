@@ -12,9 +12,7 @@ function CurrentUser() {
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
-          <Dropdown.Item>
-            <LogoutButton />
-          </Dropdown.Item>
+          <LogoutButton />
         </Dropdown.Menu>
       </Dropdown>
     </>

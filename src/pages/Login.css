@@ -11,6 +11,7 @@
   flex-wrap: wrap;
   justify-content: center;
   width: 50%;
+  padding: 0;
 }
 
 .user-button,
@@ -62,6 +63,10 @@
   padding: 5px;
   border-radius: 5px;
   margin-top: 10px;
+}
+
+.login__button h4 {
+  margin-bottom: 0;
 }
 
 /* Extra small devices (phones, 600px and down) */

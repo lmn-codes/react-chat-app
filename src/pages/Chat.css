@@ -41,6 +41,7 @@
 }
 
 .dropdown-menu.show {
+  padding: 10px;
   background-color: var(--text-primary);
 }
 
@@ -48,7 +49,9 @@
   background-color: transparent;
 }
 
-.dropdown-menu.show a button {
+.dropdown-menu.show button {
+  width: 100%;
+  height: 100%;
   color: var(--text-red);
 }
 
@@ -114,8 +117,13 @@
   background-color: transparent;
 }
 
+.chat-room__card {
+  height: 85px;
+}
+
 .chat-room__card p {
   text-align: start;
+  margin-bottom: 0;
 }
 
 /* ==========================================================================
@@ -260,10 +268,6 @@
 
   .chat-screen {
     z-index: 1;
-  }
-
-  .chat-room__card {
-    height: 85px;
   }
 }
 

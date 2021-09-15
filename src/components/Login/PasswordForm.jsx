@@ -61,7 +61,7 @@ function PasswordForm({ user }) {
           type="submit"
           onClick={authenticateUser}
         >
-          <h3>Login</h3>
+          <h4>Login</h4>
         </button>
       </form>
       {error && <p>{error}</p>}

@@ -38,7 +38,7 @@ function RoomsContextProvider({ children }) {
       },
     })
       .then((response) => {
-        setRooms((previousRooms) => [...previousRooms, response.data.data]);
+        setRooms((previousRooms) => [response.data.data, ...previousRooms]);
       })
       .catch((e) => {
         setError(e);
