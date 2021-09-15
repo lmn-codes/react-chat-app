@@ -10,8 +10,7 @@
 }
 
 .sidebar__header,
-.chat-rooms-list__wrapper,
-.chat-screen__messages__wrapper {
+.chat-rooms-list__wrapper {
   background-color: var(--secondary-color);
   border-radius: 20px;
 }
@@ -133,8 +132,15 @@
 /* Chat screen Messages
    ========================================================================== */
 
+.chat-screen__header {
+  height: 7%;
+  padding: 20px 30px;
+  border-radius: 20px 20px 0 0;
+}
+
 .chat-screen__messages__wrapper {
-  height: 90%;
+  height: 86%;
+  background-color: var(--secondary-color);
 }
 
 .chat-message__wrapper {
@@ -160,15 +166,15 @@
 }
 
 .chat-screen__form {
-  height: 5%;
+  height: 7%;
 }
 
 .chat-screen__form form label input {
-  border-radius: 20px 0 0 20px;
+  border-radius: 0 0 0 20px;
 }
 
 .chat-screen__send-button {
-  border-radius: 0px 20px 20px 0;
+  border-radius: 0 0 20px 0;
   background-color: var(--accent-color);
 }
 
