@@ -136,6 +136,7 @@
   height: 7%;
   padding: 20px 30px;
   border-radius: 20px 20px 0 0;
+  background-color: var(--highlight-color);
 }
 
 .chat-screen__messages__wrapper {

@@ -21,7 +21,7 @@ const useAPIRequest = ({ url, method, body = null ?? '' }) => {
       const response = await axios(config);
       setData(response.data.data);
     } catch (err) {
-      setError(err);
+      setError(err.response.data.message);
     } finally {
       setIsLoading(false);
     }

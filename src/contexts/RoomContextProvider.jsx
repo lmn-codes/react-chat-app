@@ -23,7 +23,7 @@ function RoomContextProvider({ children }) {
         setMessages(response.data.data);
       })
       .catch((e) => {
-        setError(e);
+        setError(e.response.data.message);
       });
   };
 
@@ -55,7 +55,7 @@ function RoomContextProvider({ children }) {
         setMessages((prevMessages) => [response.data.data, ...prevMessages]);
       })
       .catch((e) => {
-        setError(e);
+        setError(e.response.data.message);
       });
   };
 

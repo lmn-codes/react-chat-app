@@ -21,7 +21,7 @@ function RoomsContextProvider({ children }) {
         setRooms(response.data.data);
       })
       .catch((e) => {
-        setError(e);
+        setError(e.response.data.message);
       });
   }, []);
 
@@ -41,7 +41,7 @@ function RoomsContextProvider({ children }) {
         setRooms((previousRooms) => [response.data.data, ...previousRooms]);
       })
       .catch((e) => {
-        setError(e);
+        setError(e.response.data.message);
       });
   };
 
