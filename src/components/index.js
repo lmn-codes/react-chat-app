@@ -1,9 +1,6 @@
 import LoginUserList from './Login/LoginUserList';
 import PasswordForm from './Login/PasswordForm';
-import ChatRoomsList from './Chat/ChatRoomsList';
+import Sidebar from './Chat/Sidebar';
 import ChatScreen from './Chat/ChatScreen';
-import CreateChatModal from './Chat/CreateChatModal';
-import CreateChatButton from './Chat/CreateChatButton';
-import LogoutButton from './Chat/LogoutButton';
 
-export { LoginUserList, PasswordForm, ChatRoomsList, CreateChatModal, CreateChatButton, LogoutButton, ChatScreen };
+export { LoginUserList, PasswordForm, Sidebar, ChatScreen };

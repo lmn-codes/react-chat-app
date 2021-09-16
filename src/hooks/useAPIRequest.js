@@ -13,7 +13,7 @@ const useAPIRequest = ({ url, method, body = null ?? '' }) => {
     headers: {
       Authorization: `Bearer ${process.env.REACT_APP_BUNQ_API_TOKEN}`,
     },
-    body
+    body,
   };
 
   const performRequest = async () => {
@@ -21,7 +21,7 @@ const useAPIRequest = ({ url, method, body = null ?? '' }) => {
       const response = await axios(config);
       setData(response.data.data);
     } catch (err) {
-      setError(err);
+      setError(err.response.data.message);
     } finally {
       setIsLoading(false);
     }

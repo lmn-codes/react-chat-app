@@ -29,7 +29,11 @@ function verifyToken(token) {
 // Check if the password is correct
 // success if password === username
 function isAuthenticated({ username, password }) {
-  return userdb.users.findIndex(user => user.name === username && user.password === password) !== -1
+  return (
+    userdb.users.findIndex(
+      (user) => user.name === username && user.password === password
+    ) !== -1
+  );
 }
 
 server.post('/auth/login', (req, res) => {
@@ -65,4 +69,4 @@ server.use(/^(?!\/auth).*$/, (req, res, next) => {
   }
 });
 
-server.listen(4000)
+server.listen(4000);
