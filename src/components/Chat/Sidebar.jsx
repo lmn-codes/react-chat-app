@@ -7,6 +7,7 @@ import { useRoom } from '../../contexts/RoomContextProvider';
 
 function Sidebar() {
   const { selectedRoom } = useRoom();
+  // used for mobile only
   const [showSidebar, setShowSidebar] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
 

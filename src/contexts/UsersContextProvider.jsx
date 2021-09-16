@@ -14,7 +14,7 @@ function UsersContextProvider({ children }) {
     method: 'get',
   });
 
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) return <div>Error: {error}</div>;
   if (isLoading) return <div>Loading...</div>;
 
   return (

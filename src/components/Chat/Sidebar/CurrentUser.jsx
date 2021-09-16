@@ -10,7 +10,6 @@ function CurrentUser() {
         <Dropdown.Toggle className="current-user__toggle rounded p-2">
           {username}
         </Dropdown.Toggle>
-
         <Dropdown.Menu>
           <LogoutButton />
         </Dropdown.Menu>

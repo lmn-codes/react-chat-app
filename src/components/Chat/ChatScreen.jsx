@@ -11,7 +11,7 @@ import { UsersContext } from '../../contexts/UsersContextProvider';
 
 function ChatScreen() {
   const users = useContext(UsersContext);
-  const { messages, error, setSelectedRoom, selectedRoom, sendMessage, changeLastMessage } = useRoom();
+  const { messages, error, setSelectedRoom, selectedRoom, sendMessage } = useRoom();
   const currentUserId = JSON.parse(localStorage.getItem('user_id'));
   const [messageToSend, setMessageToSend] = useState('');
   let roomName;
@@ -36,7 +36,6 @@ function ChatScreen() {
     e.preventDefault();
     if (messageToSend) {
       sendMessage(messageToSend);
-      changeLastMessage(messageToSend, selectedRoom.id);
       setMessageToSend('');
     }
   }
@@ -45,8 +44,6 @@ function ChatScreen() {
     const user = users.filter((u) => u.id === id);
     return user[0].name;
   };
-
-  if (error) return <p className="text-danger">{error}</p>;
 
   function goBack() {
     setSelectedRoom(null);
@@ -110,6 +107,7 @@ function ChatScreen() {
             );
           })}
         </div>
+        {error && <p className="text-danger">{error}</p>}
       </div>
       <div className="chat-screen__form">
         <form action="POST" className="d-flex h-100">

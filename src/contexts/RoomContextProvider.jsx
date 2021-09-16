@@ -30,17 +30,20 @@ function RoomContextProvider({ children }) {
   useEffect(() => {
     if (selectedRoom) {
       getMessages();
+      setError('');
     }
   }, [selectedRoom]);
 
   const changeLastMessage = (message, id) => {
     setLastMessage({
       text: message,
-      roomId: id
+      roomId: id,
     });
-  }
+  };
 
   const sendMessage = (messageToSend) => {
+    setError('');
+    changeLastMessage(messageToSend, selectedRoom.id);
     axios({
       method: 'POST',
       url: `${process.env.REACT_APP_BUNQ_API_BASE_URL}/user/${currentUserId}/conversation/${selectedRoom.id}/message`,
@@ -59,7 +62,14 @@ function RoomContextProvider({ children }) {
       });
   };
 
-  const value = { messages, error, sendMessage, lastMessage, changeLastMessage, setSelectedRoom, selectedRoom };
+  const value = {
+    messages,
+    error,
+    sendMessage,
+    lastMessage,
+    setSelectedRoom,
+    selectedRoom,
+  };
 
   return <RoomContext.Provider value={value}>{children}</RoomContext.Provider>;
 }
