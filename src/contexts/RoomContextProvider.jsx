@@ -78,6 +78,12 @@ function useRoom() {
   return useContext(RoomContext);
 }
 
+function RoomContextConsumer() {
+  return (
+    <RoomContext.Consumer>{(value) => `Error: ${value.error}`}</RoomContext.Consumer>
+  );
+}
+
 RoomContextProvider.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element),
 };
@@ -86,4 +92,4 @@ RoomContextProvider.defaultProps = {
   children: null,
 };
 
-export { RoomContextProvider, useRoom };
+export { RoomContextProvider, useRoom, RoomContextConsumer };
