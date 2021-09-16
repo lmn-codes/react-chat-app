@@ -1,3 +1,8 @@
+/* ==========================================================================
+   LOGIN
+   ========================================================================== */
+
+
 .login__page {
   height: 100vh;
   display: flex;
@@ -5,6 +10,9 @@
   justify-content: center;
   align-items: center;
 }
+
+/* Login users
+   ========================================================================== */
 
 #login__users-list {
   display: flex;
@@ -38,6 +46,9 @@
   border: 1px solid var(--accent-color);
   filter: drop-shadow(0 0 0.75rem var(--accent-color));
 }
+
+/* Login password form
+   ========================================================================== */
 
 .login-password__form {
   display: flex;
