@@ -27,6 +27,6 @@ npm run server
 Run these commands in 2 different terminals.
 
 5. HORRAYYY :star2: You should be all set up!
-
+#### :unlock: The login password is: 'bunq'
 
 
